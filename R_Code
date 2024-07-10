@@ -1,0 +1,246 @@
+
+> # Load the dataset
+> df <- read_excel(file_path)
+
+-
+/
+                                                                              
+
+/
+                                                                              
+
+-
+                                                                              
+> 
+> # View the first few rows of the dataset
+> head(df)
+# A tibble: 6 × 15
+  `Subject ID` `MRI ID`     Group Visit `MR Delay` `M/F` Hand    Age  EDUC   SES
+  <chr>        <chr>        <chr> <chr>      <dbl> <chr> <chr> <dbl> <dbl> <dbl>
+1 OAS2_0001    OAS2_0001_M… Nond… 1              0 M     R        87    14     2
+2 OAS2_0001    OAS2_0001_M… Nond… 2            457 M     R        88    14     2
+3 OAS2_0002    OAS2_0002_M… Deme… 1              0 M     R        75    12    NA
+4 OAS2_0002    OAS2_0002_M… Deme… 2            560 M     R        76    12    NA
+5 OAS2_0002    OAS2_0002_M… Deme… 3           1895 M     R        80    12    NA
+6 OAS2_0004    OAS2_0004_M… Nond… 1              0 F     R        88    18     3
+# ℹ 5 more variables: MMSE <dbl>, CDR <dbl>, eTIV <dbl>, nWBV <dbl>, ASF <dbl>
+> 
+> # Explore the dataset
+> str(df)
+tibble [373 × 15] (S3: tbl_df/tbl/data.frame)
+ $ Subject ID: chr [1:373] "OAS2_0001" "OAS2_0001" "OAS2_0002" "OAS2_0002" ...
+ $ MRI ID    : chr [1:373] "OAS2_0001_MR1" "OAS2_0001_MR2" "OAS2_0002_MR1" "OAS2_0002_MR2" ...
+ $ Group     : chr [1:373] "Nondemented" "Nondemented" "Demented" "Demented" ...
+ $ Visit     : chr [1:373] "1" "2" "1" "2" ...
+ $ MR Delay  : num [1:373] 0 457 0 560 1895 ...
+ $ M/F       : chr [1:373] "M" "M" "M" "M" ...
+ $ Hand      : chr [1:373] "R" "R" "R" "R" ...
+ $ Age       : num [1:373] 87 88 75 76 80 88 90 80 83 85 ...
+ $ EDUC      : num [1:373] 14 14 12 12 12 18 18 12 12 12 ...
+ $ SES       : num [1:373] 2 2 NA NA NA 3 3 4 4 4 ...
+ $ MMSE      : num [1:373] 27 30 23 28 22 28 27 28 29 30 ...
+ $ CDR       : num [1:373] 0 0 0.5 0.5 0.5 0 0 0 0.5 0 ...
+ $ eTIV      : num [1:373] 1987 2004 1678 1738 1698 ...
+ $ nWBV      : num [1:373] 0.696 0.681 0.736 0.713 0.701 ...
+ $ ASF       : num [1:373] 0.883 0.876 1.046 1.01 1.034 ...
+> summary(df)
+  Subject ID           MRI ID             Group              Visit          
+ Length:373         Length:373         Length:373         Length:373        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+    MR Delay          M/F                Hand                Age       
+ Min.   :   0.0   Length:373         Length:373         Min.   :60.00  
+ 1st Qu.:   0.0   Class :character   Class :character   1st Qu.:71.00  
+ Median : 552.0   Mode  :character   Mode  :character   Median :77.00  
+ Mean   : 595.1                                         Mean   :77.01  
+ 3rd Qu.: 873.0                                         3rd Qu.:82.00  
+ Max.   :2639.0                                         Max.   :98.00  
+                                                                       
+      EDUC           SES            MMSE            CDR              eTIV     
+ Min.   : 6.0   Min.   :1.00   Min.   : 4.00   Min.   :0.0000   Min.   :1106  
+ 1st Qu.:12.0   1st Qu.:2.00   1st Qu.:27.00   1st Qu.:0.0000   1st Qu.:1357  
+ Median :15.0   Median :2.00   Median :29.00   Median :0.0000   Median :1470  
+ Mean   :14.6   Mean   :2.46   Mean   :27.34   Mean   :0.2909   Mean   :1488  
+ 3rd Qu.:16.0   3rd Qu.:3.00   3rd Qu.:30.00   3rd Qu.:0.5000   3rd Qu.:1597  
+ Max.   :23.0   Max.   :5.00   Max.   :30.00   Max.   :2.0000   Max.   :2004  
+                NA's   :19     NA's   :2                                      
+      nWBV             ASF        
+ Min.   :0.6444   Min.   :0.8755  
+ 1st Qu.:0.7002   1st Qu.:1.0990  
+ Median :0.7288   Median :1.1938  
+ Mean   :0.7296   Mean   :1.1955  
+ 3rd Qu.:0.7557   3rd Qu.:1.2930  
+ Max.   :0.8368   Max.   :1.5873  
+                                  
+> dfSummary(df)
+Data Frame Summary  
+df  
+Dimensions: 373 x 15  
+Duplicates: 0  
+
+-----------------------------------------------------------------------------------------------------------------
+No   Variable      Stats / Values               Freqs (% of Valid)    Graph                  Valid      Missing  
+---- ------------- ---------------------------- --------------------- ---------------------- ---------- ---------
+1    Subject ID    1. OAS2_0048                   5 ( 1.3%)                                  373        0        
+     [character]   2. OAS2_0070                   5 ( 1.3%)                                  (100.0%)   (0.0%)   
+                   3. OAS2_0073                   5 ( 1.3%)                                                      
+                   4. OAS2_0127                   5 ( 1.3%)                                                      
+                   5. OAS2_0017                   4 ( 1.1%)                                                      
+                   6. OAS2_0027                   4 ( 1.1%)                                                      
+                   7. OAS2_0034                   4 ( 1.1%)                                                      
+                   8. OAS2_0036                   4 ( 1.1%)                                                      
+                   9. OAS2_0037                   4 ( 1.1%)                                                      
+                   10. OAS2_0067                  4 ( 1.1%)                                                      
+                   [ 140 others ]               329 (88.2%)           IIIIIIIIIIIIIIIII                          
+
+2    MRI ID        1. OAS2_0001_MR1               1 ( 0.3%)                                  373        0        
+     [character]   2. OAS2_0001_MR2               1 ( 0.3%)                                  (100.0%)   (0.0%)   
+                   3. OAS2_0002_MR1               1 ( 0.3%)                                                      
+                   4. OAS2_0002_MR2               1 ( 0.3%)                                                      
+                   5. OAS2_0002_MR3               1 ( 0.3%)                                                      
+                   6. OAS2_0004_MR1               1 ( 0.3%)                                                      
+                   7. OAS2_0004_MR2               1 ( 0.3%)                                                      
+                   8. OAS2_0005_MR1               1 ( 0.3%)                                                      
+                   9. OAS2_0005_MR2               1 ( 0.3%)                                                      
+                   10. OAS2_0005_MR3              1 ( 0.3%)                                                      
+                   [ 363 others ]               363 (97.3%)           IIIIIIIIIIIIIIIIIII                        
+
+3    Group         1. Converted                  37 ( 9.9%)           I                      373        0        
+     [character]   2. Demented                  146 (39.1%)           IIIIIII                (100.0%)   (0.0%)   
+                   3. Nondemented               190 (50.9%)           IIIIIIIIII                                 
+
+4    Visit         1. 1                         150 (40.2%)           IIIIIIII               373        0        
+     [character]   2. 2                         144 (38.6%)           IIIIIII                (100.0%)   (0.0%)   
+                   3. 3                          58 (15.5%)           III                                        
+                   4. 4                          15 ( 4.0%)                                                      
+                   5. 5                           6 ( 1.6%)                                                      
+
+5    MR Delay      Mean (sd) : 595.1 (635.5)    201 distinct values   :                      373        0        
+     [numeric]     min < med < max:                                   :                      (100.0%)   (0.0%)   
+                   0 < 552 < 2639                                     :   .                                      
+                   IQR (CV) : 873 (1.1)                               :   :                                      
+                                                                      : : : : . : . .                            
+
+6    M/F           1. F                         213 (57.1%)           IIIIIIIIIII            373        0        
+     [character]   2. M                         160 (42.9%)           IIIIIIII               (100.0%)   (0.0%)   
+
+7    Hand          1. R                         373 (100.0%)          IIIIIIIIIIIIIIIIIIII   373        0        
+     [character]                                                                             (100.0%)   (0.0%)   
+
+8    Age           Mean (sd) : 77 (7.6)         39 distinct values        : .                373        0        
+     [numeric]     min < med < max:                                       : : :              (100.0%)   (0.0%)   
+                   60 < 77 < 98                                         : : : :                                  
+                   IQR (CV) : 11 (0.1)                                  : : : : :                                
+                                                                      : : : : : : .                              
+
+9    EDUC          Mean (sd) : 14.6 (2.9)       12 distinct values        :   .              373        0        
+     [numeric]     min < med < max:                                       :   :              (100.0%)   (0.0%)   
+                   6 < 15 < 23                                            : . : :                                
+                   IQR (CV) : 4 (0.2)                                     : : : :                                
+                                                                      .   : : : : .                              
+
+10   SES           Mean (sd) : 2.5 (1.1)        1 :  88 (24.9%)       IIII                   354        19       
+     [numeric]     min < med < max:             2 : 103 (29.1%)       IIIII                  (94.9%)    (5.1%)   
+                   1 < 2 < 5                    3 :  82 (23.2%)       IIII                                       
+                   IQR (CV) : 1 (0.5)           4 :  74 (20.9%)       IIII                                       
+                                                5 :   7 ( 2.0%)                                                  
+
+11   MMSE          Mean (sd) : 27.3 (3.7)       18 distinct values                      :    371        2        
+     [numeric]     min < med < max:                                                     :    (99.5%)    (0.5%)   
+                   4 < 29 < 30                                                          :                        
+                   IQR (CV) : 3 (0.1)                                                 . :                        
+                                                                                  . . : :                        
+
+12   CDR           Mean (sd) : 0.3 (0.4)        0.00 : 206 (55.2%)    IIIIIIIIIII            373        0        
+     [numeric]     min < med < max:             0.50 : 123 (33.0%)    IIIIII                 (100.0%)   (0.0%)   
+                   0 < 0 < 2                    1.00 :  41 (11.0%)    II                                         
+                   IQR (CV) : 0.5 (1.3)         2.00 :   3 ( 0.8%)                                               
+
+13   eTIV          Mean (sd) : 1488.1 (176.1)   371 distinct values       . : :              373        0        
+     [numeric]     min < med < max:                                       : : :              (100.0%)   (0.0%)   
+                   1105.7 < 1470 < 2004.5                                 : : :   :                              
+                   IQR (CV) : 239.6 (0.1)                               . : : : : : .                            
+                                                                      : : : : : : : : . .                        
+
+14   nWBV          Mean (sd) : 0.7 (0)          373 distinct values           :              373        0        
+     [numeric]     min < med < max:                                       . : : .            (100.0%)   (0.0%)   
+                   0.6 < 0.7 < 0.8                                        : : : : .                              
+                   IQR (CV) : 0.1 (0.1)                                 : : : : : : .                            
+                                                                      . : : : : : : : . .                        
+
+15   ASF           Mean (sd) : 1.2 (0.1)        371 distinct values         : .              373        0        
+     [numeric]     min < med < max:                                         : :              (100.0%)   (0.0%)   
+                   0.9 < 1.2 < 1.6                                        : : : :                                
+                   IQR (CV) : 0.2 (0.1)                                 . : : : :                                
+                                                                        : : : : : : .                            
+-----------------------------------------------------------------------------------------------------------------
+> 
+> # Data cleaning (if necessary)
+> colnames(df) <- c("Subject_ID", "MRI_ID", "Group", "Visit", "MR_Delay", "M/F", "Hand", "Age", "EDUC", "SES", "MMSE", "CDR", "eTIV", "nWBV", "ASF")
+> df <- na.omit(df)
+> 
+> # Check the cleaned dataset
+> head(df)
+# A tibble: 6 × 15
+  Subject_ID MRI_ID     Group Visit MR_Delay `M/F` Hand    Age  EDUC   SES  MMSE
+  <chr>      <chr>      <chr> <chr>    <dbl> <chr> <chr> <dbl> <dbl> <dbl> <dbl>
+1 OAS2_0001  OAS2_0001… Nond… 1            0 M     R        87    14     2    27
+2 OAS2_0001  OAS2_0001… Nond… 2          457 M     R        88    14     2    30
+3 OAS2_0004  OAS2_0004… Nond… 1            0 F     R        88    18     3    28
+4 OAS2_0004  OAS2_0004… Nond… 2          538 F     R        90    18     3    27
+5 OAS2_0005  OAS2_0005… Nond… 1            0 M     R        80    12     4    28
+6 OAS2_0005  OAS2_0005… Nond… 2         1010 M     R        83    12     4    29
+# ℹ 4 more variables: CDR <dbl>, eTIV <dbl>, nWBV <dbl>, ASF <dbl>
+> 
+> # Data visualization examples
+> 
+> # Histogram of Age Distribution
+> ggplot(df, aes(x = Age)) +
++   geom_histogram(binwidth = 5, fill = "blue", color = "black") +
++   labs(title = "Age Distribution", x = "Age", y = "Frequency")
+> 
+> # Boxplot of Age by Group
+> ggplot(df, aes(x = Group, y = Age, fill = Group)) +
++   geom_boxplot() +
++   labs(title = "Boxplot of Age by Group", x = "Group", y = "Age")
+> 
+> # Scatter Plot of eTIV vs. nWBV
+> ggplot(df, aes(x = eTIV, y = nWBV)) +
++   geom_point(color = "blue") +
++   labs(title = "Scatter Plot of eTIV vs. nWBV", x = "eTIV", y = "nWBV")
+> 
+> # Statistical analysis examples
+> 
+> # Descriptive statistics
+> summary(df$Age)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  60.00   71.00   77.00   77.03   82.00   98.00 
+> summary(df$eTIV)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1106    1358    1470    1490    1595    2004 
+> summary(df$nWBV)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.6444  0.6987  0.7291  0.7299  0.7569  0.8368 
+> 
+> # Correlation analysis
+> cor(df$eTIV, df$nWBV)
+[1] -0.2066464
+> 
+> # Group-wise summary
+> df %>% group_by(Group) %>%
++   summarise(
++     Mean_Age = mean(Age),
++     Median_Age = median(Age),
++     Mean_eTIV = mean(eTIV),
++     Mean_nWBV = mean(nWBV)
++   )
+# A tibble: 3 × 5
+  Group       Mean_Age Median_Age Mean_eTIV Mean_nWBV
+  <chr>          <dbl>      <dbl>     <dbl>     <dbl>
+1 Converted       79.8         81     1459.     0.724
+2 Demented        76.2         76     1491.     0.715
+3 Nondemented     77.1         77     1495.     0.741
